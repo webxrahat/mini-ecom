@@ -52,7 +52,7 @@ export default function Header() {
         d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
        />
       </svg>
-      <span className="absolute -top-1 -right-3 bg-black text-white px-2 rounded-full">
+      <span className="absolute -top-1 -right-3 bg-lime-800 text-white px-2 rounded-full">
        {cartList ? cartList.length : 0}
       </span>
      </div>

@@ -1,6 +1,19 @@
 import React from "react";
 
-export default function Checkout() {
+export default function Checkout({ productList }) {
+ console.log("productList", productList);
+
+ const subTotal =
+  productList?.cartList &&
+  productList?.cartList?.reduce((acc, cur) => acc + parseInt(cur.price), 0);
+
+ const discount = subTotal && subTotal - (subTotal * 20) / 100;
+
+ const discountAmount = discount && Math.abs(discount - subTotal);
+
+ const grandTotal =
+  productList?.cartList?.length > 0 ? subTotal - discountAmount + 15 : 0;
+
  return (
   <div className="mt-6">
    <h3 className="font-bold text-lg mb-4">Order Summary</h3>
@@ -8,11 +21,11 @@ export default function Checkout() {
    <div className="space-y-2 mb-4">
     <div className="flex justify-between">
      <span className="text-gray-600">Subtotal</span>
-     <span className="font-medium">$565</span>
+     <span className="font-medium">${subTotal}</span>
     </div>
     <div className="flex justify-between text-red-500">
      <span>Discount (-20%)</span>
-     <span>-$113</span>
+     <span>-${discountAmount}</span>
     </div>
     <div className="flex justify-between">
      <span className="text-gray-600">Delivery Fee</span>
@@ -20,7 +33,7 @@ export default function Checkout() {
     </div>
     <div className="flex justify-between font-bold text-lg pt-2 border-t border-gray-200">
      <span>Total</span>
-     <span>$467</span>
+     <span>${grandTotal}</span>
     </div>
    </div>
 

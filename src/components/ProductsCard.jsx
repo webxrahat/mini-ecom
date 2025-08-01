@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { ProductContext } from "../context";
 import Rating from "./Rating";
 
 export default function ProductsCard({ productList, onCart }) {
