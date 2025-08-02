@@ -8,6 +8,8 @@ export default function RootLayout() {
  const { productList, dispatch } = useContext(ProductContext);
  const { cartList } = productList;
 
+ console.log("cartList", cartList);
+
  const handleAddToCart = (item) => {
   const isExisting =
    cartList.length > 0 && cartList.some((isItem) => isItem.id === item.id);

@@ -16,6 +16,12 @@ export function productReducer(state, action) {
     cartList: [...state.cartList?.filter((item) => item.id !== action.id)],
    };
   }
+  case "clear": {
+   return {
+    ...state,
+    cartList: [],
+   };
+  }
   default:
    return state;
  }
