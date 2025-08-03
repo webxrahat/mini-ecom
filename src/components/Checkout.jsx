@@ -20,7 +20,7 @@ export default function Checkout({ productList, dispatch }) {
 
  const cuponValue = "1234";
 
- console.log("updateTotal", updateTotal);
+ //  console.log("updateTotal", updateTotal);
 
  const handleCuponApply = () => {
   if (!(cupon === "")) {

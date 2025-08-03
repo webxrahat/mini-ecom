@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ProductContext } from "../context";
 import Checkout from "./Checkout";
 
@@ -8,6 +8,18 @@ export default function CartItems({ productList, dispatch }) {
    type: "Delete",
    id: itemId,
   });
+ };
+
+ const [itemAction, setItemAction] = useState(1);
+
+ const handleIncrement = () => {
+  setItemAction(itemAction + 1);
+ };
+
+ const handleDecrement = () => {
+  if (!(itemAction === 1)) {
+   setItemAction(itemAction - 1);
+  }
  };
 
  return (
@@ -42,11 +54,17 @@ export default function CartItems({ productList, dispatch }) {
           <div className="flex justify-between items-center mt-2">
            <p className="font-bold">$ {item.price}</p>
            <div className="flex items-center space-x-2">
-            <button className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center">
+            <button
+             onClick={handleDecrement}
+             className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
+            >
              −
             </button>
-            <span className="text-sm">1</span>
-            <button className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center">
+            <span className="text-sm">{itemAction}</span>
+            <button
+             onClick={handleIncrement}
+             className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
+            >
              +
             </button>
            </div>

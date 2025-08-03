@@ -1,15 +1,14 @@
 export function productReducer(state, action) {
  switch (action.type) {
-  case "Add":
-   {
-    return { ...state, cartList: [...state.cartList, action.cartList] };
-   }
-   break;
-  // case "Edit":
-  //   {
-  //     return state.map((product) => product.id === action.payload);
-  //   }
-  //   break;
+  case "Add": {
+   return { ...state, cartList: [...state.cartList, action.cartList] };
+  }
+  case "increment": {
+   return {
+    ...state,
+   };
+  }
+
   case "Delete": {
    return {
     ...state,
