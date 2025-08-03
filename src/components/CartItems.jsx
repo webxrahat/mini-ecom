@@ -12,11 +12,15 @@ export default function CartItems({ productList, dispatch }) {
 
  const [itemAction, setItemAction] = useState(1);
 
- const handleIncrement = () => {
+ const handleIncrement = (itemId) => {
   setItemAction(itemAction + 1);
+  dispatch({
+   type: "increment",
+   id: itemId,
+  });
  };
 
- const handleDecrement = () => {
+ const handleDecrement = (itemId) => {
   if (!(itemAction === 1)) {
    setItemAction(itemAction - 1);
   }
@@ -55,14 +59,14 @@ export default function CartItems({ productList, dispatch }) {
            <p className="font-bold">$ {item.price}</p>
            <div className="flex items-center space-x-2">
             <button
-             onClick={handleDecrement}
+             onClick={() => handleDecrement(item.id)}
              className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
             >
              −
             </button>
             <span className="text-sm">{itemAction}</span>
             <button
-             onClick={handleIncrement}
+             onClick={() => handleIncrement(item.id)}
              className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
             >
              +

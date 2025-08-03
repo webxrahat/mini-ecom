@@ -7,7 +7,7 @@ export default function ProductsCard({ productList, onCart }) {
   <div className="product-grid">
    {productList.itemList.map((item) => {
     const isExisting =
-     cartList.length > 0 && cartList.some((isItem) => isItem.id === item.id);
+     cartList.length > 0 && cartList.some((isItem) => isItem.id === item?.id);
 
     return (
      <div

@@ -4,9 +4,25 @@ export function productReducer(state, action) {
    return { ...state, cartList: [...state.cartList, action.cartList] };
   }
   case "increment": {
+   const newqty = state.itemList?.map((item) => {
+    if (item.id === action.id) {
+     const newItem = {
+      ...item,
+      inventory: Math.max(Number(item.inventory) - 1, 0),
+     };
+
+     return newItem;
+    }
+    return item;
+   });
+
    return {
     ...state,
+
+    itemList: newqty,
    };
+
+   console.log("newqty", newqty);
   }
 
   case "Delete": {
