@@ -19,11 +19,12 @@ export default function CartItems({ productList, dispatch }) {
    id: itemId,
   });
  };
-
  const handleDecrement = (itemId) => {
-  if (!(itemAction === 1)) {
-   setItemAction(itemAction - 1);
-  }
+  setItemAction(itemAction - 1);
+  dispatch({
+   type: "decrement",
+   id: itemId,
+  });
  };
 
  return (
@@ -57,7 +58,7 @@ export default function CartItems({ productList, dispatch }) {
 
           <div className="flex justify-between items-center mt-2">
            <p className="font-bold">$ {item.price}</p>
-           <div className="flex items-center space-x-2">
+           {/* <div className="flex items-center space-x-2">
             <button
              onClick={() => handleDecrement(item.id)}
              className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
@@ -71,7 +72,7 @@ export default function CartItems({ productList, dispatch }) {
             >
              +
             </button>
-           </div>
+           </div> */}
           </div>
          </div>
         </div>

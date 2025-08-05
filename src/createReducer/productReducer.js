@@ -4,6 +4,15 @@ export function productReducer(state, action) {
    return { ...state, cartList: [...state.cartList, action.cartList] };
   }
   case "increment": {
+   const updatedCart = state.cartList.map((item) => {
+    if (item.id === action.id) {
+     const newItem = { ...item, quantity: item.quantity + 1 };
+
+     return newItem;
+    }
+    return item;
+   });
+
    const newqty = state.itemList?.map((item) => {
     if (item.id === action.id) {
      const newItem = {
@@ -18,11 +27,37 @@ export function productReducer(state, action) {
 
    return {
     ...state,
-
     itemList: newqty,
+    cartList: updatedCart,
    };
+  }
+  case "decrement": {
+   const updatedCart = state.cartList.map((item) => {
+    if (item.id === action.id) {
+     const newItem = { ...item, quantity: item.quantity - 1 };
 
-   console.log("newqty", newqty);
+     return newItem;
+    }
+    return item;
+   });
+
+   const newqty = state.itemList?.map((item) => {
+    if (item.id === action.id) {
+     const newItem = {
+      ...item,
+      inventory: Math.max(Number(item.inventory) + 1, 0),
+     };
+
+     return newItem;
+    }
+    return item;
+   });
+
+   return {
+    ...state,
+    itemList: newqty,
+    cartList: updatedCart,
+   };
   }
 
   case "Delete": {
